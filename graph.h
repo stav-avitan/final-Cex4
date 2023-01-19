@@ -1,24 +1,27 @@
 #ifndef GRAPH_
 #define GRAPH_
 
-#include "nodes.h"
-#include "edges.h"
+typedef struct GRAPH_NODE_ *pnode;;
 
-void delete_graph(pnode *h);
-void createNewGraph(pnode *h);
-void addVertice(pnode *h);
-void deleteVertice (pnode *h);
-void shortsPath(pnode h);
-int shortsPathWithMat(pnode h, int, int);
-int min(int, int);
-void TisTheShortestPath(pnode h);
-void allChoices(pnode, int *, int, int , int *, int *);
-int calc(pnode, int[], int);
-void swap(int *, int *);
-int numOfWays(int);
-int findMinimum(int[], int);
+typedef struct edge_ {
+    int weight;
+    pnode endpoint;
+    struct edge_ *next;
+} edge, *pedge;
 
-void option (char, pnode *head);
 
+typedef struct GRAPH_NODE_ {
+    int node_num;
+    pedge edges;
+    struct GRAPH_NODE_ *next;
+} node, *pnode;
+
+void build_graph_cmd(pnode *head);
+void insert_node_cmd(pnode *head);
+void delete_node_cmd(pnode *head);
+void printGraph_cmd(pnode head); //for self debug
+void deleteGraph_cmd(pnode* head);
+void shortsPath_cmd(pnode head);
+void TSP_cmd(pnode head);
 
 #endif
